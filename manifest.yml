@@ -1,0 +1,17 @@
+---
+applications:
+  - name: di-ipv-atp-selfie
+    memory: 512M
+    buildpack: nodejs_buildpack
+    command: "node app.js"
+    services:
+      - session-cache
+    env:
+      SESSION_SECRET: your_session_secret
+      LOG_SESSION: "false"
+      REDIS_SESSION_URL: "127.0.0.1"
+      REDIS_PORT: "6379"
+      SESSION_COOKIE_MAX_AGE: "1200000"
+      SESSION_COOKIE_SECURE: "false"
+      ENVIRONMENT: "dev"
+      TOKEN_SECRET: "some_secret"
