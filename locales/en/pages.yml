@@ -1,0 +1,32 @@
+passportDetails:
+  title: Enter your UK passport details
+
+verificationType:
+  title: Choose API to validate photo details
+  content:
+    - "There are a number of API providers that can be used to validate a submitted photo against stored photo id"
+
+notAvailable:
+  title: Not available
+  content:
+    - This API is not currently available
+
+deepFaceComparison:
+  title: Compare Facial Features
+
+faceFileUpload:
+  title: Upload a photo
+
+faceMatch:
+  title: Face Matching Successful
+
+faceNoMatch:
+  title: Face Matching Unsuccessful
+
+exifDisplay:
+  title: EXIF Comparison
+
+done:
+  title: Journey Complete
+  content:
+    - Journey complete

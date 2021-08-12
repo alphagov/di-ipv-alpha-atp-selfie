@@ -1,0 +1,45 @@
+passportNumber:
+  label: Passport number
+
+surname:
+  label: Surname
+
+givenNames:
+  label: Given names
+
+dateOfBirth:
+  legend: Date of birth
+  validation:
+    default: 'You need to supply your date of birth'
+
+issueDate:
+  legend: Issue date
+  validation:
+    default: 'You need to supply the issue date of your passport'
+
+expiryDate:
+  legend: Expiry date
+  validation:
+    default: 'You need to supply the expiry date of your passport'
+
+"date-day":
+  label: Day
+
+"date-month":
+  label: Month
+
+"date-year":
+  label: Year
+
+facialVerificationType:
+  legend: " "
+  items:
+    onfido:
+      label: Onfido
+    idemia:
+      label: Idemia
+    exif:
+      label: EXIF Image Data
+
+faceFileUpload:
+  label: Select a photo to upload
