@@ -1,3 +1,4 @@
+const doneController = require("./controllers/done");
 const passportDetails = require("./controllers/passport-details");
 const exifDisplayController = require("./controllers/exif-display");
 
@@ -54,7 +55,9 @@ module.exports = {
   },
   "/not-available": {},
   "/done": {
+    controller: doneController,
     entryPoint: true,
-
+    skip: true,
+    next: "/ipv/next?source=information"
   },
 };
