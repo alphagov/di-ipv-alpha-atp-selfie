@@ -15,6 +15,7 @@ const sessionConfig = {
 
 const { router } = setup({
   config: { APP_ROOT: __dirname },
+  port: process.env.PORT || 3000,
   logs: loggerConfig,
   redis: redisConfig,
   session: sessionConfig,
