@@ -1,0 +1,18 @@
+{% extends "form-template.njk" %}
+{% set hmpoPageKey = "exifDisplay" %}
+
+{% block innerContent %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+        <h2>Passport</h2>
+        <img src="data:image/png;charset=utf-8;base64,{{values.passportImage}}" width="250">
+        <div>{{values.passportMetadata.ImageDescription}}</div>
+    </div>
+    <div class="govuk-grid-column-one-half">
+        <h2>Uploaded Image</h2>
+        <img src="data:image/jpeg;charset=utf-8;base64,{{values.uploadedImage}}" width="250">
+        <div>{{values.uploadedMetadata.ImageDescription}}</div>
+    </div>
+</div>
+{% endblock %}

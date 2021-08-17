@@ -1,0 +1,30 @@
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+{% extends "form-template.njk" %}
+{% set hmpoPageKey = "faceUpload" %}
+
+{% block mainContent %}
+
+<form
+  enctype="multipart/form-data"
+  action="/selfie/upload"
+  method="POST"
+  novalidate="true">
+    {%- set csrfToken = ctx("csrf-token") %}
+    {%- if csrfToken %}
+    <input type="hidden" name="x-csrf-token" value="{{ csrfToken }}" />
+    {%- endif %}
+
+{{ govukFileUpload({
+id: "faceFileUpload",
+name: "faceFileUpload",
+label: {
+text: "Upload a file"
+}
+}) }}
+
+{{ hmpoSubmit(ctx) }}
+
+</form>
+{% endblock %}
+
