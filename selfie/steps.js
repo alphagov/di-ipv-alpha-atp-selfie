@@ -58,6 +58,6 @@ module.exports = {
     controller: doneController,
     entryPoint: true,
     skip: true,
-    next: "/ipv/next?source=information"
+    next: "/ipv/next?source=selfie"
   },
 };
