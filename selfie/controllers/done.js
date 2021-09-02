@@ -7,8 +7,8 @@ const backendATP = process.env.BASIC_INFO_API ||
 
 class DoneController extends BaseController {
   async saveValues(req, res, next) {
-    const identityVerificationData = {
-      type: "SELFIE",
+    const verificationData = {
+      type: "SELFIE_CHECK",
       strength: 4,
       validity: 0,
       attributes: {
@@ -16,19 +16,19 @@ class DoneController extends BaseController {
       },
     };
     
-    const { data: output } = await axios.post(backendATP, identityVerificationData);
+    const { data: output } = await axios.post(backendATP, verificationData);
     const decoded = jwt.decode(output);
 
-    identityVerificationData.validation = {
+    verificationData.validation = {
       genericDataVerified: decoded.genericDataVerified,
     };
 
-    identityVerificationData.jws = output;
-    identityVerificationData.atpResponse = decoded;
+    verificationData.jws = output;
+    verificationData.atpResponse = decoded;
 
     const identityVerification = {
-      data: identityVerificationData,
-      score: req.sessionModel.get('facialVerification') ? 4 : 0
+      type: verificationData.type,
+      verificationData,
     }
 
     req.session.sessionData = req.session.sessionData || {};
