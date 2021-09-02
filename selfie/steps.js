@@ -4,6 +4,7 @@ const exifDisplayController = require("./controllers/exif-display");
 
 module.exports = {
   "/": {
+    reset: true,
     entryPoint: true,
     skip: true,
     next: "passport-details",

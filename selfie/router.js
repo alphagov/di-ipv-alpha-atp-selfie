@@ -6,6 +6,7 @@ const fields = require("./fields");
 
 const router = new HmpoFormWizard(steps, fields, {
   name: "selfie",
+  journeyName: "ipv"
 });
 
 router.use('/upload', require('busboy-body-parser')({limit: '5mb'}),(req, res,next) => {
