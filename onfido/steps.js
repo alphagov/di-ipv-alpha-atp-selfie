@@ -33,6 +33,11 @@ module.exports = {
   // },
   "/name": {
     fields: ["surname", "givenNames"],
+    next: "onfido-create-applicant",
+  },
+  "/onfido-create-applicant": {
+    controller: onfidoCreateApplicantController,
+    skip: true,
     next: "integration-type",
   },
   "/integration-type": {
@@ -56,11 +61,6 @@ module.exports = {
     next: "photo-uploaded",
   },
   "/photo-uploaded": {
-    next: "onfido-create-applicant",
-  },
-  "/onfido-create-applicant": {
-    controller: onfidoCreateApplicantController,
-    skip: true,
     next: "onfido-upload",
   },
   "/onfido-upload": {
