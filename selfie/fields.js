@@ -30,7 +30,7 @@ module.exports = {
   },
   facialVerificationType: {
     type: "radios",
-    items: ["exif", "onfido","idemia"],
+    items: ["exif", "onfidoSandbox","idemia"],
     validate: ["required"],
   },
   faceFileUpload: {

@@ -1,6 +1,8 @@
 
 buttons:
   next: Continue
+  documentSubmit: Upload your document
+  photoSubmit: Upload your photo
 govuk:
   serviceName: Prove your identity
   backLink: Back
@@ -8,3 +10,4 @@ govuk:
   error: Error
   warning: Warning
   skipLink: Skip to main content
+

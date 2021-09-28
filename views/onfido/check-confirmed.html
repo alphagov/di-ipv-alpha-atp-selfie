@@ -1,0 +1,10 @@
+{% extends "form-template.njk" %}
+{% set hmpoPageKey = "onfidoCheckConfirmed" %}
+
+{% block innerContent %}
+
+<div>{{ values.check | dump }}</div>
+
+{{ super () }}
+
+{% endblock %}
