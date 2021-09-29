@@ -65,6 +65,9 @@ onfidoOnfidoStyle:
     - The Onfido backend API is used for running the checks, in the same way as the GDS style integration
     - "Note: Only sample documents should be uploaded"
 
+onfidoDisplayWebSDK:
+  title: Onfido Web SDK Page
+
 onfidoCheckStatus:
   title: Processing results
   content:

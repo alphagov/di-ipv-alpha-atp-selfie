@@ -5,7 +5,7 @@ const onfidoStartCheckController = require("./controllers/onfido-start-check");
 const onfidoCheckStatusController = require("./controllers/onfido-check-status");
 const onfidoCreateApplicantController = require("./controllers/onfido-create-applicant");
 const onfidoUploadController = require("./controllers/onfido-upload");
-
+const onfidoCreateWebTokenController = require('./controllers/onfido-create-web-token')
 module.exports = {
   "/": {
     resetJourney: true,
@@ -75,6 +75,8 @@ module.exports = {
     next: "onfido-create-web-token",
   },
   "/onfido-create-web-token": {
+    controller: onfidoCreateWebTokenController,
+    skip: true,
     next: "onfido-display-web-sdk",
   },
   "/onfido-display-web-sdk": {
