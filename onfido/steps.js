@@ -42,7 +42,10 @@ module.exports = {
   },
   "/integration-type": {
     fields: ["integrationType"],
-    next: ["gds-style"],
+    next: [
+      { field: "integrationType", value: "onfido", next: "onfido-style" },
+      { field: "integrationType", value: "api", next: "gds-style" },
+    ],
   },
   "/gds-style": {
     next: "document-upload",
@@ -66,6 +69,16 @@ module.exports = {
   "/onfido-upload": {
     controller: onfidoUploadController,
     skip: true,
+    next: "onfido-start-check",
+  },
+  "/onfido-style": {
+    next: "onfido-create-web-token",
+  },
+  "/onfido-create-web-token": {
+    next: "onfido-display-web-sdk",
+  },
+  "/onfido-display-web-sdk": {
+    noPost: true,
     next: "onfido-start-check",
   },
   "/onfido-start-check": {
