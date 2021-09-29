@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@onfido/api": "2.1.0",
     "axios": "0.21.1",
     "busboy-body-parser": "^0.3.2",
     "cfenv": "1.2.4",
