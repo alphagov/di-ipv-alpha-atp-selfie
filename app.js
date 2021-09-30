@@ -21,7 +21,9 @@ const { router } = setup({
   session: sessionConfig,
   urls: {
     public: "/selfie/public",
-  }
+  },
+  dev: true
 });
 
 router.use("/selfie", require("./selfie/router"));
+router.use("/selfie/exif", require("./exif/router"));
