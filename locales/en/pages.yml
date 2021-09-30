@@ -1,3 +1,70 @@
+onfidoInfo:
+  title: Onfido Sandbox
+  content:
+    - Onfido's Sandbox mode uses predetermined check results and does not do any live processing of data
+    - These predetermined checks are configured the use of special firstName and lastName values
+    - - e.g A surname of "rejected" will return a rejected response
+    - The next few screens ask questions to configure these special names
+    - This data is then sent to Onfido to be run as a check
+
+onfidoName:
+  title: Enter your name
+
+onfidoCheck:
+  title: Checking details
+
+onfidoDocumentUpload:
+  title: Document Upload
+  content:
+    - Upload a copy of your document
+
+onfidoDocumentUploaded:
+  title: Document upload success
+
+onfidoPhotoUpload:
+  title: Photo Upload
+  content:
+    - Upload a recent photo of yourself
+
+onfidoPhotoUploaded:
+  title: Photo upload success
+
+onfidoCheckConfirmed:
+    title: Document and photo have been confirmed
+    content:
+      - - The document has been verified
+      - - The photo has been compared
+      - - The <a href="{{ values.check.resultsUri}}">Onfido report</a> is available to view
+
+onfidoCheckUnconfirmed:
+  title: Document check not confirmed
+  content:
+    - Your document has not been validated
+
+onfidoIntegrationType:
+  title: Onfido Integration Type
+  content:
+    - "Onfido provides two different ways of uploading documents:"
+    - - Direct API access, which will allow us to style things fully in the GDS way
+    - - Web SDK usage, which uses Onfido's file uploading screens
+    - At the end of the file uploading stage, we will still use the direct API to run checks and reports
+
+onfidoGDSStyle:
+  title: GDS Style Integration
+  content:
+    - In this approach this ATP handles all of the document and photo upload reponsiblity
+    - - In production, this would entail proper storage of uploaded files, with deletion policies
+    - - In this demo, everything is saved into the session, which is then saved into Redis
+    - Also only sample documents should be uploaded
+
+onfidoCheckStatus:
+  title: Processing results
+  content:
+    - This page would be a holding page while we wait for Onfido's server to finish processing the document and photo
+    - - In production, Onfido would post to a webhook endpoint that is on our infrastrcture
+    - - In this demo, response times are quick, so we can wait a few seconds on this page
+    - " "
+    - If a result came back needing human assessment, this is the jumping off point from where we would need to do Save & Return
 passportDetails:
   title: Enter your UK passport details
 
@@ -30,3 +97,6 @@ done:
   title: Journey Complete
   content:
     - Journey complete
+
+onfidoResultTypes:
+  title: Result type

@@ -34,8 +34,8 @@ expiryDate:
 facialVerificationType:
   legend: " "
   items:
-    onfido:
-      label: Onfido
+    onfidoSandbox:
+      label: Onfido - Sandbox
     idemia:
       label: Idemia
     exif:
@@ -43,3 +43,40 @@ facialVerificationType:
 
 faceFileUpload:
   label: Select a photo to upload
+
+resultType:
+  legend: " "
+  items:
+    clear:
+      label: Clear - No indications of fraud
+    consider:
+      label: Consider ...?
+    caution:
+      label: Caution - Can't complete all verifications, not necessarilty fradulent
+    suspected:
+      label: Suspected - Document shows signs of suspected fraud
+    rejected:
+      label: Rejected - we can't process the image or unsupported document
+
+imageIntegrity:
+  legend: " "
+  items:
+    supportedDocument:
+      label:Unsupported document
+    imageQuality:
+      label: Image Quality
+
+visualAuthenticity:
+  legend: " "
+  items:
+    fonts: Fonts are not correct
+    securityFeatures: Security features have been tampered with
+    faceDetection: No face detected
+
+integrationType:
+  legend: " "
+  items:
+    api:
+      label: Show as GDS style
+    onfido:
+      label: Show as Onfido style

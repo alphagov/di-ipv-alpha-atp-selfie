@@ -15,15 +15,15 @@
     <input type="hidden" name="x-csrf-token" value="{{ csrfToken }}" />
     {%- endif %}
 
-{{ govukFileUpload({
-id: "faceFileUpload",
-name: "faceFileUpload",
-label: {
-text: "Upload a file"
-}
-}) }}
+    {{ govukFileUpload({
+        id: "faceFileUpload",
+        name: "faceFileUpload",
+        label: {
+        text: "Upload a file"
+        }
+    }) }}
 
-{{ hmpoSubmit(ctx) }}
+    {{ hmpoSubmit(ctx) }}
 
 </form>
 {% endblock %}

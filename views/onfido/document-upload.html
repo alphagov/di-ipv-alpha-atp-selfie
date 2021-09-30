@@ -1,0 +1,68 @@
+{% extends "form-template.njk" %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+{% set hmpoTitle %}Upload your document{% endset %}
+
+{% block mainContent %}
+<h1>{{ hmpoTitle }}</h1>
+
+<ul class="govuk-list govuk-list--bullet">
+    <li>This page is used to represent what a user would see</li>
+    <li>Onfido in Sandbox mode will not process this image at all</li>
+    <li>Do not upload personal documents to the sandbox environment</li>
+</ul>
+
+<form
+        enctype="multipart/form-data"
+        method="POST"
+        novalidate="true">
+    {%- set csrfToken = ctx("csrf-token") %}
+    {%- if csrfToken %}
+    <input type="hidden" name="x-csrf-token" value="{{ csrfToken }}" />
+    {%- endif %}
+
+    {# TODO: Add logic for `mobileDevice` #}
+
+{{ govukFileUpload({
+  id: "document",
+  classes: "document-choose-file",
+  label: {
+    attributes: { id: "document-label" },
+    text: translate("buttons.documentSubmitMobile") if mobileDevice else translate("buttons.documentSubmit")
+  },
+  attributes: {
+    accept: "image/jpeg"
+  }
+}) }}
+
+<input type="hidden" name="document-filename" id="document-filename"/>
+
+
+{{ hmpoSubmit(ctx, { id: "document-submit-button" }) }}
+
+<script>
+    (function() {
+        // auto-submit when a file is selected
+        var button = document.getElementById("document-label");
+
+        var file = document.getElementById("document");
+        var filename = document.getElementById("document-filename");
+        var submit = document.getElementById("document-submit-button");
+        file.onchange = function() {
+            filename.name = "document";
+            filename.value = file.value;
+            file.name = "document-file"
+
+            // file.value = "";
+            submit.click();
+            submit.disabled = true;
+        };
+        // hide submit button, file upload, and make upload label look like a submit button
+        file.className = file.className + " govuk-visually-hidden";
+        submit.className = submit.className + " govuk-visually-hidden";
+        button.className = button.className + " govuk-button document-button";
+    })();
+</script>
+
+</form>
+{% endblock %}

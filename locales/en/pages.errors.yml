@@ -1,8 +1,9 @@
 
 error:
-  title: Something went wrong
+  title: Something went wrong!
   content:
     - '{{ error.message }}'
+    - '{{ error | dump }}'
     - '{% if showStack %}<pre>{{error.stack | safe}}</pre>{% endif %}'
 
 pageNotFound:
@@ -11,4 +12,3 @@ pageNotFound:
 sessionEnded:
   title: Session expired
 
-  

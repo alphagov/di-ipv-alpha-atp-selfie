@@ -10,6 +10,7 @@ module.exports = {
     fields: ["facialVerificationType"],
     next: [
       { field: "facialVerificationType", value: "exif", next: "/selfie/exif" },
+      { field: "facialVerificationType", value: "onfidoSandbox", next: "/selfie/onfido" },
       "not-available",
     ],
   },
