@@ -44,7 +44,13 @@ nodemon app.js
 
 Translations are stored in json files in the `locales` directory. Translations are applied to the application using [HMPO i18n](https://github.com/HMPO/hmpo-i18n]). Multiple languages are supported by default using language codes - currently only English translations have been provided during the prototype stage.
 
-
+## Environment Variables
+- `BASE_INFO_API` - Backend service to sign data bundle. (Default to deployment on `PaaS`)
+- `ONFIDO_API_TOKEN` - API token for Onfido API
+- `PORT` - Webserver Port (defaults to `3000`)
+- `REDIS_SESSION_PORT` - Redis Port
+- `REDIS_SESSION_URL` - Redis URL
+- `SESSION_SECRET` - Session secret (dev can use any random string)
 
 # Troubleshooting
 
