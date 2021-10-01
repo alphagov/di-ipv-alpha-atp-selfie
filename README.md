@@ -51,7 +51,9 @@ Translations are stored in json files in the `locales` directory. Translations a
 - `REDIS_SESSION_PORT` - Redis Port
 - `REDIS_SESSION_URL` - Redis URL
 - `SESSION_SECRET` - Session secret (dev can use any random string)
-
+- `IDEMIA_API_TOKEN` - Backend API token for Idemia
+- `IDEMIA_WEB_TOKEN` - Frontend token for Idemia
+- `IDEMIA_URL` - Idemia service URL
 # Troubleshooting
 
 - Internally this app makes extensive use of modules that use the [debug utility](https://github.com/visionmedia/debug) for logging. Try adding `DEBUG=*` at the start of the `npm run` command

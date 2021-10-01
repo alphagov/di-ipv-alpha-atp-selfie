@@ -27,6 +27,8 @@ const { router } = setup({
 
 router.use(/.*upload$/, require("busboy-body-parser")({ limit: "5mb" }));
 
+
 router.use("/selfie", require("./selfie/router"));
 router.use("/selfie/exif", require("./exif/router"));
 router.use("/selfie/onfido", require("./onfido/router"));
+router.use("/selfie/idemia", require("./idemia/router"));
