@@ -1,27 +1,26 @@
 const BaseController = require("hmpo-form-wizard").Controller;
-const { Onfido, Region } = require("@onfido/api");
-const debug = require("debug")("selfie:onfido-create-applicant");
-// const PassThrough = require("stream").PassThrough;
-const {PassThrough, Readable} = require('stream')
+const debug = require("debug")("selfie:idemia-create-identity");
+const axios = require("axios");
 
-const onfido = new Onfido({
-  apiToken: process.env.ONFIDO_API_TOKEN,
-  // Supports Region.EU, Region.US and Region.CA
-  region: Region.EU,
+const instance = axios.create({
+  baseURL: `${process.env.IDEMIA_URL}/gips/v1`,
+  timeout: 5000,
+  headers: { apikey: process.env.IDEMIA_API_TOKEN },
 });
 
-class OnfidoCreateApplicantController extends BaseController {
+class IdemiaCreateIdentityController extends BaseController {
   async saveValues(req, res, next) {
-    debug('saveValues')
+    debug("saveValues");
+
     try {
-      const applicant = await onfido.applicant.create({
-        firstName: req.sessionModel.get("givenNames"),
-        lastName: req.sessionModel.get("surname"),
-      });
+      const identity = await instance.post(
+        `/identities`,
+        {},
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      debug(identity.data);
 
-      debug(applicant)
-      req.sessionModel.set('onfidoApplicant', applicant)
-
+      req.sessionModel.set("idemiaIdentity", identity.data);
     } catch (error) {
       console.log(error.message);
       return next(error);
@@ -31,4 +30,4 @@ class OnfidoCreateApplicantController extends BaseController {
   }
 }
 
-module.exports = OnfidoCreateApplicantController;
+module.exports = IdemiaCreateIdentityController;

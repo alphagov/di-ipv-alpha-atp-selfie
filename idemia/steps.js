@@ -5,6 +5,12 @@
 // const onfidoCheckStatusController = require("./controllers/onfido-check-status");
 // const onfidoCreateApplicantController = require("./controllers/onfido-create-applicant");
 // const onfidoUploadController = require("./controllers/onfido-upload");
+const idemiaCreateIdentityController = require("./controllers/idemia-create-identity");
+const idemiaConsentController = require("./controllers/idemia-consent");
+const idemiaVerifyDocumentController = require("./controllers/idemia-verify-document");
+const documentUploadController = require("./controllers/document-upload");
+const photoUploadController = require("./controllers/photo-upload");
+const doneController = require("./controllers/done");
 
 module.exports = {
   "/": {
@@ -14,68 +20,46 @@ module.exports = {
     next: "info",
   },
   "/info": {
-    next: "name",
+    next: "idemia-create-identity",
   },
-  // "/name": {
-  //   fields: ["surname", "givenNames"],
-  //   next: "integration-type",
-  // },
-  // "/integration-type": {
-  //   fields: ["integrationType"],
-  //   next: ["gds-style"],
-  // },
-  // "/gds-style": {
-  //   next: "document-upload",
-  // },
-  // "/document-upload": {
-  //   controller: documentUploadController,
-  //   fields: ["document", "document-file"],
-  //   next: "document-uploaded",
-  // },
-  // "/document-uploaded": {
-  //   next: "photo-upload",
-  // },
-  // "/photo-upload": {
-  //   entryPoint: true,
-  //   controller: photoUploadController,
-  //   next: "photo-uploaded",
-  // },
-  // "/photo-uploaded": {
-  //   next: "onfido-create-applicant",
-  // },
-  // "/onfido-create-applicant": {
-  //   controller: onfidoCreateApplicantController,
-  //   skip: true,
-  //   next: "onfido-upload",
-  // },
-  // "/onfido-upload": {
-  //   controller: onfidoUploadController,
-  //   skip: true,
-  //   next: "onfido-start-check",
-  // },
-  // "/onfido-start-check": {
-  //   skip: true,
-  //   controller: onfidoStartCheckController,
-  //   next: "check-status",
-  // },
-  // "/check-status": {
-  //   controller: onfidoCheckStatusController,
-  //   next: [
-  //     {
-  //       fn: (req) => req.sessionModel.get("checkResult") === "clear",
-  //       next: "check-confirmed",
-  //     },
-  //     "check-unconfirmed",
-  //   ],
-  // },
-  // "/check-confirmed": {
-  //   next: "done",
-  // },
-  //
-  // "/check-unconfirmed": {},
-  // "/done": {
-  //   controller: doneController,
-  //   skip: true,
-  //   next: "/ipv/next?source=selfie",
-  // },
+  "/idemia-create-identity": {
+    controller: idemiaCreateIdentityController,
+    skip: true,
+    next: "idemia-consent",
+  },
+  "/idemia-consent": {
+    controller: idemiaConsentController,
+    next: "document-upload"
+  },
+  "/document-upload": {
+    controller: documentUploadController,
+    fields: ["document", "document-file"],
+    next: "idemia-verify-document",
+  },
+  "/idemia-verify-document": {
+    controller: idemiaVerifyDocumentController,
+    next: "idemia-check-identity-status",
+  },
+  "/idemia-check-identity-status": {
+    next: "photo-upload",
+  },
+  "/photo-upload": {
+    entryPoint: true,
+    controller: photoUploadController,
+    next: "idemia-verify-selfie",
+  },
+  "/idemia-verify-selfie": {
+    next: "onfido-create-applicant",
+  },
+  "/idemia-check-status": {
+    next:"idemia-check-identity-status-final"
+  },
+  "/idemia-proof": {
+    next: "done"
+  },
+  "/done": {
+    controller: doneController,
+    skip: true,
+    next: "/ipv/next?source=selfie",
+  },
 };
