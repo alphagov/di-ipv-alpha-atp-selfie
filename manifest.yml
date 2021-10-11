@@ -1,6 +1,6 @@
 ---
 applications:
-  - name: di-ipv-atp-selfie
+  - name: di-ipv-alpha-atp-selfie
     memory: 512M
     buildpack: nodejs_buildpack
     command: "node app.js"
