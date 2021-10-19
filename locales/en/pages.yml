@@ -111,3 +111,24 @@ done:
 
 onfidoResultTypes:
   title: Result type
+
+idemiaInfo:
+  title: Idemia
+  content:
+    - Idemia uses a trial environment not a sandbox.
+    - In order to verify a user, an identity needs to be created
+    - - A new identity automatically expires 30min after it is created or when requesting the proof.
+    - - After this time limit, all identity evidences submitted are discarded.
+    - PII Data Retention policy is 30 days
+
+idemiaConsent:
+  title: Consent
+  content:
+    - Idemia requires user consent
+    - This is done via an API request after creating the initial identity
+    - The appropriate place for asking the user for consent is a question for lawyers and the UCD team
+
+idemiaVerifyDocument:
+  title: Verify Document
+  content:
+    - Submit the uploaded document to Idemia for processing
