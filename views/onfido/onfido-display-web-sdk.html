@@ -1,0 +1,38 @@
+{% extends "form-template.njk" %}
+{% set hmpoPageKey = "onfidoDisplayWebSDK" %}
+
+{% block mainContent %}
+
+<div id='onfido-mount'></div>
+
+<!-- This should absolutely be locally included via our buiild pipeline -->
+<script src="https://assets.onfido.com/web-sdk-releases/6.14.0/onfido.min.js"></script>
+<link href="https://assets.onfido.com/web-sdk-releases/6.14.0/style.css" rel="stylesheet" type="text/css" />
+
+<script>
+Onfido.init({
+token: '{{ values.onfidoSDKToken }}',
+    containerId: 'onfido-mount',
+    onComplete: function(data) {
+    console.log("A completion message")
+        window.location.href = "selfie/onfido/onfido-start-check"
+    },
+    steps: [
+      'welcome',
+        {
+          "type": "document",
+            "options": {
+              "documentTypes": {
+                "driving_licence": {
+                  "country": "GBR"
+                },
+                "passport": true
+              }
+            }
+        },
+      'face',
+      'complete'
+    ]
+    });
+</script>
+{% endblock %}

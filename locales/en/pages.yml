@@ -52,10 +52,21 @@ onfidoIntegrationType:
 onfidoGDSStyle:
   title: GDS Style Integration
   content:
-    - In this approach this ATP handles all of the document and photo upload reponsiblity
+    - In this approach this ATP handles all of the document and photo upload reponsibility
     - - In production, this would entail proper storage of uploaded files, with deletion policies
     - - In this demo, everything is saved into the session, which is then saved into Redis
-    - Also only sample documents should be uploaded
+    - "Note: Only sample documents should be uploaded"
+
+onfidoOnfidoStyle:
+  title: Onfido Style Integration
+  content:
+    - In this approach this ATP uses the Ofido web SDK to upload the document and photo
+    - A unique web SDK key is generated for each user
+    - The Onfido backend API is used for running the checks, in the same way as the GDS style integration
+    - "Note: Only sample documents should be uploaded"
+
+onfidoDisplayWebSDK:
+  title: Onfido Web SDK Page
 
 onfidoCheckStatus:
   title: Processing results

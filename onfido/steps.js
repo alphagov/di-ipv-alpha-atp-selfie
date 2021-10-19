@@ -5,7 +5,7 @@ const onfidoStartCheckController = require("./controllers/onfido-start-check");
 const onfidoCheckStatusController = require("./controllers/onfido-check-status");
 const onfidoCreateApplicantController = require("./controllers/onfido-create-applicant");
 const onfidoUploadController = require("./controllers/onfido-upload");
-
+const onfidoCreateWebTokenController = require('./controllers/onfido-create-web-token')
 module.exports = {
   "/": {
     resetJourney: true,
@@ -33,11 +33,19 @@ module.exports = {
   // },
   "/name": {
     fields: ["surname", "givenNames"],
+    next: "onfido-create-applicant",
+  },
+  "/onfido-create-applicant": {
+    controller: onfidoCreateApplicantController,
+    skip: true,
     next: "integration-type",
   },
   "/integration-type": {
     fields: ["integrationType"],
-    next: ["gds-style"],
+    next: [
+      { field: "integrationType", value: "onfido", next: "onfido-style" },
+      { field: "integrationType", value: "api", next: "gds-style" },
+    ],
   },
   "/gds-style": {
     next: "document-upload",
@@ -56,16 +64,23 @@ module.exports = {
     next: "photo-uploaded",
   },
   "/photo-uploaded": {
-    next: "onfido-create-applicant",
-  },
-  "/onfido-create-applicant": {
-    controller: onfidoCreateApplicantController,
-    skip: true,
     next: "onfido-upload",
   },
   "/onfido-upload": {
     controller: onfidoUploadController,
     skip: true,
+    next: "onfido-start-check",
+  },
+  "/onfido-style": {
+    next: "onfido-create-web-token",
+  },
+  "/onfido-create-web-token": {
+    controller: onfidoCreateWebTokenController,
+    skip: true,
+    next: "onfido-display-web-sdk",
+  },
+  "/onfido-display-web-sdk": {
+    noPost: true,
     next: "onfido-start-check",
   },
   "/onfido-start-check": {

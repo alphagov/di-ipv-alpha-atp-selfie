@@ -27,7 +27,8 @@
     "hmpo-logger": "^4.1.3",
     "jsonwebtoken": "8.5.1",
     "nodemon": "^2.0.9",
-    "nunjucks": "^3.2.3"
+    "nunjucks": "^3.2.3",
+    "onfido-sdk-ui": "6.14.0"
   },
   "devDependencies": {
     "node-sass": "^6.0.0",
